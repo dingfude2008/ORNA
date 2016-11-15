@@ -1,0 +1,50 @@
+//
+//  PrefixHeader.pch
+//  VitaFunByIJK360
+//
+//  Created by 丁付德 on 16/8/25.
+//  Copyright © 2016年 dfd. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+// ---------------------------------------- 配置相关
+#import "Macro.h"
+#import "ColorMacro.h"
+#import "HelperMacro.h"
+
+// ---------------------------------------- 第三方相关
+#import "UIAlertView+BlocksKit.h"
+#import "UIActionSheet+BlocksKit.h"
+
+// ---------------------------------------- 全局引用相关
+
+#import "LSNavigationController.h"
+#import "AppDelegate.h"
+#import "NSObject+XWAdd.h"
+#import "NSThread+DFHelper.h"
+#import "NSTimer+DFHelper.h"
+#import "NSDate+toString.h"
+#import "MBProgressHUD.h"
+#import "MBProgressHUD+Add.h"
+#import "UIImage+LogN.h"
+#import "BLEHeader.h"
+#import "BLEManager.h"
+#import "DFD.h"
+#import "NSTimer+DF_helper.h"
+
+#endif
+
+#endif /* PrefixHeader_pch */

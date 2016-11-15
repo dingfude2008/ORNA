@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tvcLeft" id="KGk-i7-Jjw" customClass="tvcLeft">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DTC-qY-dgM" userLabel="imvBig">
+                        <rect key="frame" x="0.0" y="-2" width="320" height="64"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J7n-9V-jMg">
+                        <rect key="frame" x="5" y="17" width="285" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="NcD-JT-bgV"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="DTC-qY-dgM" secondAttribute="trailing" id="0xf-m3-cMw"/>
+                    <constraint firstAttribute="trailing" secondItem="J7n-9V-jMg" secondAttribute="trailing" constant="30" id="97L-ib-HAT"/>
+                    <constraint firstAttribute="centerX" secondItem="J7n-9V-jMg" secondAttribute="centerX" constant="-10" id="AAt-VX-mSK"/>
+                    <constraint firstAttribute="centerY" secondItem="J7n-9V-jMg" secondAttribute="centerY" id="Icw-UA-xsf"/>
+                    <constraint firstAttribute="trailing" secondItem="J7n-9V-jMg" secondAttribute="trailing" constant="30" id="QW3-UW-nII"/>
+                    <constraint firstAttribute="centerY" secondItem="J7n-9V-jMg" secondAttribute="centerY" id="Xyr-To-2mV"/>
+                    <constraint firstAttribute="bottom" secondItem="DTC-qY-dgM" secondAttribute="bottom" constant="-2" id="Z7q-7q-EDP"/>
+                    <constraint firstItem="J7n-9V-jMg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="dgy-ri-VHq"/>
+                    <constraint firstItem="DTC-qY-dgM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="-2" id="gBQ-ou-SAD"/>
+                    <constraint firstItem="DTC-qY-dgM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="jMD-RY-UxN"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="AAt-VX-mSK"/>
+                        <exclude reference="Icw-UA-xsf"/>
+                        <exclude reference="QW3-UW-nII"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+            <connections>
+                <outlet property="imvBig" destination="DTC-qY-dgM" id="obc-ai-MDl"/>
+                <outlet property="lblName" destination="J7n-9V-jMg" id="S29-Af-FVH"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

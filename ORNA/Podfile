@@ -1,0 +1,7 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, "8.0"
+
+target "ORNA" do
+    pod 'FBRetainCycleDetector',            '~> 0.1.3'      # 检测循环引用
+#    pod 'MBProgressHUD',                    '~> 1.0.0'
+end
