@@ -39,8 +39,22 @@
     [application setStatusBarHidden:NO];
     [application setStatusBarStyle:UIStatusBarStyleLightContent];
     
+    [self runLoopBLE];
+    
     return YES;
 }
+
+- (void)runLoopBLE{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_global_queue(0, 0), ^{
+        NSString *defaultUUID = GetUserDefault(DefaultUUIDString);
+        if (defaultUUID && !DDBLE.isLink && DDBLE.isOn) {
+            NSLog(@"不停的连接");
+            [DDBLE retrievePeripheral:defaultUUID];
+            [self runLoopBLE];
+        }
+    });
+}
+
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {

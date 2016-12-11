@@ -107,6 +107,8 @@
     });
     tabView.backgroundColor = DClear;
     tabView.separatorStyle = UITableViewCellSelectionStyleGray;
+    tabView.contentInset = UIEdgeInsetsMake(70, 0, 30, 0);
+    tabView.scrollIndicatorInsets = tabView.contentInset;
 }
 
 
@@ -132,6 +134,9 @@
     }
     cell.contentView.backgroundColor = DClear;
     cell.textLabel.textColor = DBlack;
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 43, ScreenWidth, 1)];
+    line.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.5];
+    [cell.contentView addSubview:line];
     
     CBPeripheral *cbp = (CBPeripheral *)self.dicData.allValues[indexPath.row];
     cell.textLabel.text = cbp.name;
@@ -154,7 +159,7 @@
     CBPeripheral *cbp = _dicData[cbpUUID];
     
     __block SearchController *blockSelf = self;
-    UIAlertView *alert = [UIAlertView bk_showAlertViewWithTitle:@"Bound to this device?"
+    UIAlertView *alert = [UIAlertView bk_showAlertViewWithTitle:@"Bound to this device?\n"
                                                         message:cbp.name
                                               cancelButtonTitle:@"Cancel"
                                               otherButtonTitles:@[@"OK"]
@@ -163,7 +168,6 @@
         {
             blockSelf->swtRefresh = YES;
             [DDBLE retrievePeripheral:cbpUUID];
-//            MBShow(@"正在连接");
             [blockSelf performSelector:@selector(checkisLinkAfterConnecting) withObject:nil afterDelay:10];
             // 这里防止用户点击后， 连接不上， 是因为设备已经长时间没有连接停止广播造成的
             blockSelf->beginDate = DNow;
@@ -176,8 +180,7 @@
 -(void)Found_Next:(NSMutableDictionary *)recivedTxt
 {
     NSLog(@"Search : Found_Next");
-    if(!swtRefresh)
-    {
+    if(!swtRefresh){
         __block SearchController *blockSelf = self;
         __block NSMutableDictionary *blockrecivedTxt = [recivedTxt mutableCopy];
         NSLog(@"");
@@ -198,8 +201,9 @@
 -(void)beginSearchAgain
 {
     if (!DDBLE.isOn) {
-//        MBShow(@"Please turn on Bluetooth");
-        [MBProgressHUD show:@"Please turn on Bluetooth" toView:self.windowView];
+        MBShow(@"Please turn on Bluetooth");
+        
+        
         return;
     }
     beginDate = DNow;
@@ -219,7 +223,7 @@
                         if(!blockSelf.dicData.count)
                         {
                             if (blockSelf.view.window) {
-                                MBShow(@"没有发现设备");
+                                MBShow(@"No device found.");
                             }
                         }
                         , DDSearchTime);

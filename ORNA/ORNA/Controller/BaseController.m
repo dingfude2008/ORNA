@@ -40,14 +40,11 @@
     [super viewDidLoad];
     self.title = @"BaseController";
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     if (![self isKindOfClass:NSClassFromString(@"LeftViewcontroller")]) {
         DDBLE.delegate              = self;
     }
     self.appDelegate            = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.windowView             = self.appDelegate.window;
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageFromColor:DBlack] forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.translucent = NO;
 }
 
 
@@ -59,17 +56,17 @@
         DDBLE.delegate              = self;
     }
     
-    if(![self isKindOfClass:NSClassFromString(@"SearchController")])
-    {
-        
-        timerAutoLink = [NSTimer DF_sheduledTimerWithTimeInterval:1 block:^{
-            if (!DDBLE.isLink && GetUserDefault(DefaultUUIDString) && DDBLE.isOn)// 防止用户推出登录后仍会连接
-            {
-                NextWaitInGlobal(
-                                 [DDBLE retrievePeripheral:GetUserDefault(DefaultUUIDString)];);
-            }
-        } repeats:YES];
-    }
+//    if(![self isKindOfClass:NSClassFromString(@"SearchController")])
+//    {
+//        
+//        timerAutoLink = [NSTimer DF_sheduledTimerWithTimeInterval:1 block:^{
+//            if (!DDBLE.isLink && GetUserDefault(DefaultUUIDString) && DDBLE.isOn)// 防止用户推出登录后仍会连接
+//            {
+//                NextWaitInGlobal(
+//                                 [DDBLE retrievePeripheral:GetUserDefault(DefaultUUIDString)];);
+//            }
+//        } repeats:YES];
+//    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -141,9 +138,7 @@
     if (imgName || text || isGif)
     {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        //int left = 10;
         button.frame = CGRectMake(0, 0, 30, 30);
-        //Border(button, DRed)
         [button addTarget:self action:@selector(rightButtonClick) forControlEvents:UIControlEventTouchUpInside];
         if (isGif)
         {
@@ -156,14 +151,20 @@
                 _activity;
             })];
         }
-        else if (imgName)
-        {
-            //[button setImage:[UIImage imageNamed:imgName] forState:UIControlStateNormal];
-            //button.imageView.contentMode = UIViewContentModeScaleAspectFill;
-            [button setBackgroundImage:[UIImage imageNamed:imgName] forState:UIControlStateNormal];
-        }
-        else if (text)
-        {
+        else if (imgName){
+            button.frame = CGRectMake(0, 0, 90, 44);
+            button.backgroundColor = [UIColor clearColor];
+            [button setImage:[UIImage imageNamed:imgName] forState:UIControlStateNormal];
+            [button setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@02",imgName]] forState:UIControlStateHighlighted];
+            button.imageEdgeInsets = UIEdgeInsetsMake(0,40,20,20);
+            [button setTitle:([imgName isEqualToString:@"disconnected"] ? @"CLICK ON THE BLUETOOTH LOGO TO SEARCH YOUR DEVICE" : @"CLICK ON THE BLUETOOTH LOGO TO UNBUND YOUR DEVICE") forState:UIControlStateNormal];
+            button.titleLabel.font = [UIFont systemFontOfSize:6];
+            button.titleLabel.numberOfLines = 2;
+            button.titleLabel.textAlignment = NSTextAlignmentCenter;
+            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+            button.titleEdgeInsets = UIEdgeInsetsMake(20, -39, 0, -15);
+        }else if (text){
             [button setTitle:kString(text) forState:UIControlStateNormal];
             [button setTitleColor:DWhite forState:UIControlStateNormal];
             [button setBackgroundColor:DClear];
@@ -265,8 +266,6 @@
 
 -(void)CallBack_BeginSearch
 {
-    
-    
     NSLog(@"CallBack_BeginSearch");
     DDWeakVV
     NextWaitInMain(
@@ -283,12 +282,12 @@
     DDWeakVV
     NextWaitInMain(
                    DDStrongVV
-                   if (DDBLE.isLink) {
-                       [self initRightButton:ConnectedImage text:nil isGif:NO];
-                   }else if(DDBLE.dic.count){
-                       [self initRightButton:DisConnectedImage text:nil isGif:NO];
-                   }else{
-                       [self initRightButton:DisConnectedImage text:nil isGif:NO];
+                   if([NSStringFromClass([self class]) isEqualToString:@"SearchController"]){
+                       if (DDBLE.isLink) {
+                           [self initRightButton:ConnectedImage text:nil isGif:NO];
+                       }else{
+                           [self initRightButton:DisConnectedImage text:nil isGif:NO];
+                       }
                    }
                    );
 }

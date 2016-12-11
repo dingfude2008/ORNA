@@ -16,8 +16,6 @@
 - (void)ls_viewDidLoad
 {
     [self ls_viewDidLoad];
-    [self.navigationController.navigationBar setBackgroundImage:[[UIColor blackColor] imageWithColor] forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.tintColor = DBlack;
 }
 
 + (void)load

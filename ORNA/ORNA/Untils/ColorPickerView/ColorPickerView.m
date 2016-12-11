@@ -41,27 +41,26 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self handleTouchEvent:event];
+    [self handleTouchEvent:event isNow:NO];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self handleTouchEvent:event];
+    [self handleTouchEvent:event isNow:NO];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self handleTouchEvent:event];
+    [self handleTouchEvent:event isNow:YES];
 }
 
 #pragma mark - Private methods
-
-- (void)handleTouchEvent:(UIEvent *)event {
+- (void)handleTouchEvent:(UIEvent *)event isNow:(BOOL)isNow {
     for (UITouch *touch in event.allTouches) {
         CGPoint point = [self usefulPoint:[touch locationInView:self]];
         UIColor *color = [self colorAtLocation:point];
         if ([self.delegate respondsToSelector:@selector(colorPickerDidSelectColor:)]) {
             [self.delegate performSelector:@selector(colorPickerDidSelectColor:) withObject:color];
         } else if (self.block != nil) {
-            self.block(color);
+            self.block(color, isNow);
         }
     }
 }

@@ -16,6 +16,10 @@ static int countWriteSuccess = 0;
 @interface BLEManager()<CBCentralManagerDelegate,CBPeripheralDelegate>
 {
     dispatch_queue_t __syncQueueMangerDidUpdate;
+    NSDate *lastSetBrightnessDate;
+    NSDate *lastSetSpeedDate;
+    NSDate *lastSetRGB;
+    
 }
 
 @end
@@ -43,8 +47,9 @@ static int countWriteSuccess = 0;
         manager.isBeginOK = NO;
         manager.arrValue = @[@0,@20,@50,@0,@0,@0,@0];
         manager -> isRest = YES;
-        
-        
+        manager -> lastSetBrightnessDate = [NSDate date];
+        manager -> lastSetSpeedDate = [NSDate date];
+        manager -> lastSetRGB = [NSDate date];
     });
     return manager;
 }
@@ -235,10 +240,10 @@ static int countWriteSuccess = 0;
  */
 -(void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
-//    float juli = powf(10, (abs([RSSI intValue]) - 59) / (10 * 2.0));
-//    NSLog(@"设备名称 : %@ %@  距离 %.1f米", peripheral.name, [peripheral.identifier UUIDString], juli);
+//    float distance = powf(10, (abs([RSSI intValue]) - 59) / (10 * 2.0));
+//    NSLog(@"设备名称 : %@ %@  距离 %.1f米", peripheral.name, [peripheral.identifier UUIDString], distance);
     
-    if (peripheral.name && ([peripheral.name rangeOfString:Filter_Name].length))
+    if (peripheral.name && (([peripheral.name rangeOfString:Filter_Name].length) || ([peripheral.name rangeOfString:OtherFilter_Name].length)))
     {
         [dic setObject:peripheral forKey:[peripheral.identifier UUIDString]];
     }
@@ -609,8 +614,13 @@ static int countWriteSuccess = 0;
 
 
 
-- (void)swithStandbyOrWorking:(NSString *)uuidString isStandby:(BOOL)isStandby
+- (void)swithStandbyOrWorking:(BOOL)isStandby
 {
+    if (!self.per) {
+        return;
+    }
+    NSString *uuidString = self.per.identifier.UUIDString;
+    
     //0:模式 1:速度 2:亮度 3:R 4:G 5:B 6:W
     NSMutableArray *arrTag = [self.arrValue mutableCopy];
     arrTag[0] = @(!isStandby ? 1:127);
@@ -654,8 +664,12 @@ static int countWriteSuccess = 0;
 
 
 
-- (void)swithDynamicOrStatic:(NSString *)uuidString isDynamic:(BOOL)isDynamic
+- (void)swithDynamicOrStatic:(BOOL)isDynamic
 {
+    if (!self.per) {
+        return;
+    }
+    NSString *uuidString = self.per.identifier.UUIDString;
     //0:模式 1:速度 2:亮度 3:R 4:G 5:B 6:W
     NSMutableArray *arrTag = [self.arrValue mutableCopy];
     arrTag[0] = @(isDynamic ? 1:0);
@@ -664,9 +678,22 @@ static int countWriteSuccess = 0;
 }
 
 
-- (void)setRGB:(NSString *)uuidString
-           RGB:(NSArray*)RGB
-{
+- (void)setRGB:(NSArray*)RGB
+         isNow:(BOOL)isNow{
+    if (!self.per) {
+        return;
+    }
+    NSDate *now = [NSDate date];
+    if(!isNow){
+        if(fabs([now timeIntervalSinceDate:lastSetRGB]) < 0.1){
+            NSLog(@"设置RGB间隔太短了");
+            return;
+        }
+    }
+    
+    lastSetRGB = now;
+    
+    NSString *uuidString = self.per.identifier.UUIDString;
     double R_old = [self.arrValue[3] doubleValue];
     double G_old = [self.arrValue[4] doubleValue];
     double B_old = [self.arrValue[5] doubleValue];
@@ -725,10 +752,23 @@ static int countWriteSuccess = 0;
     [self set:uuidString isInit:NO];
 }
 
-// 设置亮度
-- (void)setBrightness:(NSString *)uuidString
-           brightness:(int)brightness
-{
+
+- (void)setBrightness:(int)brightness
+                isNow:(BOOL)isNow{
+    if (!self.per) {
+        return;
+    }
+    
+    NSDate *now = [NSDate date];
+    if(!isNow){
+        if(fabs([now timeIntervalSinceDate:lastSetBrightnessDate]) < 0.1){
+            NSLog(@"设置亮度间隔太短了");
+            return;
+        }
+    }
+    lastSetBrightnessDate = now;
+    
+    NSString *uuidString = self.per.identifier.UUIDString;
     //0:模式 1:速度 2:亮度 3:R 4:G 5:B 6:W
     NSMutableArray *arrTag = [self.arrValue mutableCopy];
     
@@ -761,8 +801,6 @@ static int countWriteSuccess = 0;
     }
     
     
-    
-    
     newR = newR > 255.0 ? 255.0 : newR;
     newG = newG > 255.0 ? 255.0 : newG;
     newB = newB > 255.0 ? 255.0 : newB;
@@ -785,21 +823,30 @@ static int countWriteSuccess = 0;
     
     NSLog(@"设置亮度后 %@-%@-%@-%@,", self.arrValue[2],self.arrValue[3],self.arrValue[4],self.arrValue[5]);
     
-    
     [self set:uuidString isInit:NO];
 }
-
 // 设置速度
-- (void)setSpeed:(NSString *)uuidString
-           speed:(int)speed{
+- (void)setSpeed:(int)speed
+           isNow:(BOOL)isNow{
+    if (!self.per) {
+        return;
+    }
+    NSDate *now = [NSDate date];
+    if(!isNow){
+        if(fabs([now timeIntervalSinceDate:lastSetSpeedDate]) < 0.1){
+            NSLog(@"设置亮度间隔太短了");
+            return;
+        }
+    }
+    lastSetSpeedDate = now;
+    
+    NSString *uuidString = self.per.identifier.UUIDString;
     //0:模式 1:速度 2:亮度 3:R 4:G 5:B 6:W
     NSMutableArray *arrTag = [self.arrValue mutableCopy];
     arrTag[1] = @(speed);
     self.arrValue = [arrTag mutableCopy];
     [self set:uuidString isInit:NO];
 }
-
-
 
 
 - (void)set:(NSString *)uuidString isInit:(BOOL)isInit

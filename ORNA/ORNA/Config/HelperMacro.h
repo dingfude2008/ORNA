@@ -34,18 +34,12 @@
 #define ScreenRadio                0.562 // 屏幕宽高比
 #define DFontSize(_key)            [UIFont systemFontOfSize:_key]   // 字体
 
-
-// ------- 显示
-//#define MBShowAll                  [DialogUtil hideLoading:self.view];[DialogUtil showLoading:self.view];
-//#define MBHide                     [DialogUtil hideLoading:self.view];
-//#define MBShow(_k)                 [DialogUtil showDlg:self.view longTextOnly:kString(_k)];
-
 #define MBShow(message)             [MBProgressHUD show:message toView:self.windowView];
 #define MBShowAll                   [MBProgressHUD showHUDAddedTo:self.windowView animated:YES];
 #define MBHide                      [MBProgressHUD hideAllHUDsForView:self.windowView animated:YES];
 // 测试
 #if DEBUG
-//    #import <FBRetainCycleDetector/FBRetainCycleDetector.h>
+    #import <FBRetainCycleDetector/FBRetainCycleDetector.h>
 #endif
 
 #define Border(_label, _color)     _label.layer.borderWidth = 1; _label.layer.borderColor = _color.CGColor;
@@ -66,12 +60,6 @@
 
 // 时间
 #define DNow                       [NSDate date]
-#define DDYear                     (int)DNow.year       // 当前的年份
-#define DDMonth                    (int)DNow.month      // 当前的月份
-#define DDDay                      (int)DNow.day        // 当前的日
-#define DDHour                     (int)DNow.hour       // 当前的时
-#define DDMinute                   (int)DNow.minute     // 当前的分
-#define DDSecond                   (int)DNow.second     // 当前的秒
 
 #define DDBLE                      [BLEManager sharedManager]
 #define DDSearchTime               10

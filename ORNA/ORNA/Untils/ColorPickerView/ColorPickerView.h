@@ -14,7 +14,7 @@ typedef NS_ENUM(NSUInteger, ZWColorPickerStyle) {
     ZWColorPickerStyleRing                     //环状
 };
 
-typedef void (^ PickFinishedBlock)(UIColor * __nullable);
+typedef void (^ PickFinishedBlock)(UIColor * __nullable, BOOL isNow);
 
 @protocol ZWColorPickerDelegate <NSObject>
 

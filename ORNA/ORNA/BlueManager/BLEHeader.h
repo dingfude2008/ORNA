@@ -36,6 +36,8 @@
 
 #define Filter_Name                                    @"xylight"
 
+#define OtherFilter_Name                               @"Orna LED"
+
 #define dataInterval                                    1.2                // 时间间隔
 
 

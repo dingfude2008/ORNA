@@ -165,23 +165,24 @@
 - (void)begin:(NSString *)uuid;
 
 // 设置是否待机
-- (void)swithStandbyOrWorking:(NSString *)uuidString
-                    isStandby:(BOOL)isStandby;
+- (void)swithStandbyOrWorking:(BOOL)isStandby;
 
 // 设置是否渐变
-- (void)swithDynamicOrStatic:(NSString *)uuidString
-                   isDynamic:(BOOL)isDynamic;
+- (void)swithDynamicOrStatic:(BOOL)isDynamic;
 // 设置是否颜色
-- (void)setRGB:(NSString *)uuidString
-           RGB:(NSArray*)RGB;
-// 设置亮度
-- (void)setBrightness:(NSString *)uuidString
-           brightness:(int)brightness;
-// 设置速度
-- (void)setSpeed:(NSString *)uuidString
-           speed:(int)speed;
+- (void)setRGB:(NSArray*)RGB
+         isNow:(BOOL)isNow;
 
+
+// 设置亮度
+- (void)setBrightness:(int)brightness
+                isNow:(BOOL)isNow;
 // 设置速度
+- (void)setSpeed:(int)speed
+           isNow:(BOOL)isNow;
+
+
+//
 - (void)test:(NSString *)uuidString;
 
 

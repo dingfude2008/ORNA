@@ -29,12 +29,25 @@
     [self loadSubviewController];
 }
 
+
+//取出系统自带的tabbar并把里面的按钮删除掉
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    for ( UIView * child in  self.tabBar.subviews) {
+        
+        if ([child isKindOfClass:[UIControl class]]) {
+            [child removeFromSuperview];
+        }
+    }
+}
+
+
 -(void)loadSubviewController
 {
-    UINavigationController *nav1 = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
-    UINavigationController *nav2 = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"Description"];
-    UINavigationController *nav3 = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"UserManual"];
-    UINavigationController *nav4 = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"AbountUs"];
+    LSNavigationController *nav1 = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
+    LSNavigationController *nav2 = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"Description"];
+    LSNavigationController *nav3 = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"UserManual"];
+    LSNavigationController *nav4 = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"AbountUs"];
     
     self.viewControllers = @[ nav1, nav2, nav3, nav4 ];
     self.tabBar.hidden = YES;

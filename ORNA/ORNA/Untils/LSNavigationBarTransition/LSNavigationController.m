@@ -28,6 +28,16 @@
     UIPanGestureRecognizer* pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
     [self.view addGestureRecognizer:pan];
     pan.delegate = self;
+    
+    self.interactivePopGestureRecognizer.enabled = YES;
+    
+    UIImageView *imv = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 64)];
+    imv.image = [UIImage imageNamed:@"tabar"];
+    
+    [self.view insertSubview:imv belowSubview:self.navigationBar];
+    self.navigationBar.translucent = NO;
+    [self setToolbarHidden:YES];
+    
 }
 - (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController*)navigationController interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController
 {

@@ -11,20 +11,24 @@
 #import "ColorPickerView.h"
 #import "SearchController.h"
 #import "CircleView.h"
+#import "DFSound.h"
 
 @interface IndexController ()<ZWColorPickerDelegate>
 {
     BOOL isFirstLoad;
     
     BOOL isDynamic;     // 是否处于渐变模式
+    
 }
 
 @property (weak, nonatomic) IBOutlet ColorPickerView *imageView;
 @property (weak, nonatomic) IBOutlet CircleView *circleView;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnAll;
-@property (weak, nonatomic) IBOutlet UISlider *sliderLightness;
-@property (weak, nonatomic) IBOutlet UISlider *sliderSpeed;
+@property (weak, nonatomic) IBOutlet UIImageView *imvBtnAll;
+
+@property (weak, nonatomic) IBOutlet DFSlider *sliderLightness;
+@property (weak, nonatomic) IBOutlet DFSlider *sliderSpeed;
 @property (weak, nonatomic) IBOutlet UILabel *lblTest;
 @property (weak, nonatomic) IBOutlet UILabel *lblTest2;
 @property (weak, nonatomic) IBOutlet UILabel *lblTest3;
@@ -36,6 +40,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnDynamic;
 @property (weak, nonatomic) IBOutlet UIImageView *imvStatic;
 @property (weak, nonatomic) IBOutlet UIImageView *imvDynamic;
+@property (weak, nonatomic) IBOutlet UILabel *lblConnectedName;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imvComylogoTop;
+
+
+//@property (weak, nonatomic) IBOutlet UILabel *lblConnectedName;
 
 @end
 
@@ -44,57 +53,58 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    [self setVcLeftDelegate];
     
     [self setNavTitle:@"ORNA"];
     [self initLeftButton:@"menu" text:nil];
     [self initRightButton:@"disconnected" text:nil isGif:NO];
-    self.btnAll.layer.cornerRadius = 20;
-    self.btnAll.layer.borderWidth = 1;
-    self.btnAll.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.btnAll.layer.masksToBounds = YES;
+    
+    self.imvBtnAll.layer.cornerRadius = 20;
+    self.imvBtnAll.layer.borderWidth = 1;
+    self.imvBtnAll.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.imvBtnAll.layer.masksToBounds = YES;
     
     self.circleView.circleRadius = (ScreenWidth * 0.618 + 30 ) / 2;
     self.circleView.circleWidth = 5;
     self.circleView.backgroundColor= [UIColor clearColor];
     
-    self.sliderLightness.minimumValue = 50;
+    self.sliderLightness.minimumValue = 5;             // 客户要求改为最低5
     self.sliderLightness.maximumValue = 255;
     
     self.sliderSpeed.minimumValue = 20;
     self.sliderSpeed.maximumValue = 100;
     
+    // RGB(143, 187, 226)
+    UIColor *sliderColor = RGB(143, 187, 226);
     // 旋转
     self.sliderSpeed.transform = CGAffineTransformRotate(self.sliderSpeed.transform, -M_PI);
-    self.sliderLightness.minimumTrackTintColor = [UIColor blueColor];
-    self.sliderLightness.maximumTrackTintColor = [UIColor grayColor];
+    self.sliderLightness.minimumTrackTintColor = sliderColor;
+    self.sliderLightness.maximumTrackTintColor = [UIColor lightGrayColor];
     
-    self.sliderSpeed.minimumTrackTintColor = [UIColor grayColor];
-    self.sliderSpeed.maximumTrackTintColor = [UIColor blueColor];
+    self.sliderSpeed.minimumTrackTintColor = [UIColor lightGrayColor];
+    self.sliderSpeed.maximumTrackTintColor = sliderColor;
     
-    [self.btnAll setBackgroundImage:[UIImage imageNamed:@"swith_on"] forState:UIControlStateSelected];
-    [self.btnAll setBackgroundImage:[UIImage imageNamed:@"swith_off"] forState:UIControlStateNormal];
-
+    
     __weak typeof(self) weakself = self;
-    [self.imageView setPickerStyle:0 andBlock:^(UIColor *color) {
-        [weakself changecolor:color];
+    [self.imageView setPickerStyle:0 andBlock:^(UIColor *color, BOOL isNow) {
+        [weakself changecolor:color isNow:isNow];
     }];
     
     isFirstLoad = YES;
     
-//#ifdef DEBUG
-//    self.lblTest.hidden = self.lblTest2.hidden = NO;
-//#else
-//    self.lblTest.hidden = self.lblTest2.hidden = YES;
-//#endif
-//    
-    self.lblTest.hidden = self.lblTest2.hidden = self.lblTest3.hidden = self.lblTest4.hidden = YES;
+#ifdef DEBUG
+    self.lblTest.hidden = self.lblTest2.hidden = NO;
+#else
+    self.lblTest.hidden = self.lblTest2.hidden = YES;
+#endif
     
+    self.lblTest.hidden = self.lblTest2.hidden = self.lblTest3.hidden = self.lblTest4.hidden = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    
     DDWeakVV
     NextWaitInMain(
         DDStrongVV
@@ -112,21 +122,18 @@
             [DDBLE startScan];
         }
     }
-    
     if (DDBLE.isLink) {
         [self initRightButton:ConnectedImage text:nil isGif:NO];
         self.btnAll.enabled = YES;
         self.sliderSpeed.enabled = YES;
         self.sliderLightness.enabled = YES;
     }else if(DDBLE.isScaning && GetUserDefault(DefaultUUIDString)){
-        [self initRightButton:nil text:nil isGif:YES];
         [self setAllControlEnable];
-        
     }else{
         [self initRightButton:DisConnectedImage text:nil isGif:NO];
-//        self.btnAll.enabled = NO;
         [self setAllControlEnable];
     }
+    [self refreshLblConnectedName];
 }
 
 -(void)setAllControlEnable
@@ -137,13 +144,6 @@
     self.sliderLightness.enabled = NO;
 }
 
-// 设置代理
-//-(void)setVcLeftDelegate
-//{
-//    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-//    LeftViewcontroller *left = (LeftViewcontroller *)delegate.left;
-//    left.delegate = self;
-//}
 
 -(void)back
 {
@@ -162,7 +162,7 @@
         else
         {
             __block IndexController *blockSelf = self;
-            UIAlertView *alert = [UIAlertView bk_showAlertViewWithTitle:@"Alert"
+            UIAlertView *alert = [UIAlertView bk_showAlertViewWithTitle:@"Alert\n"
                     message:@"Are you sure to remove the binding device?"
           cancelButtonTitle:@"Cancel"
           otherButtonTitles:@[@"YES"]
@@ -203,7 +203,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)changecolor:(UIColor *)color{
+- (void)changecolor:(UIColor *)color isNow:(BOOL)isNow{
     const CGFloat *components = CGColorGetComponents(color.CGColor);
     CGFloat r = components[0];
     CGFloat g = components[1];
@@ -225,42 +225,77 @@
         B = 255.0;
     }
     
-    
     if([DDBLE.arrValue[0] intValue] == 127){
         NSLog(@"处于待机模式");
     }else{
-        //NSLog(@"改变颜色--> 模式：%@ 速度：%.0f, RGB:%f-%f-%f",(self.sgt.selectedSegmentIndex == 1 ? @"渐变":@"静态"), self.sliderSpeed.value, R, G, B);
-        
-        [DDBLE setRGB:GetUserDefault(DefaultUUIDString)
-                  RGB:@[@(R),@(G),@(B)]];
-        
+        [DDBLE setRGB:@[@(R),@(G),@(B)] isNow:isNow];
     }
 }
 
+- (void)refreshImvBtnAll{
+    self.imvBtnAll.image = [UIImage imageNamed:(self.btnAll.selected ? @"swith_on" : @"swith_off")];
+}
+
+
+- (void)refreshLblConnectedName{
+    self.lblConnectedName.text = DDBLE.isLink ? [NSString stringWithFormat:@"Connected to '%@'", DDBLE.per.name] : @"";
+    self.imvComylogoTop.constant = DDBLE.isLink ? 5 : 10;
+}
 
 - (IBAction)btnAllClick:(UIButton *)sender {
     if (self.btnAll.selected) {
         self.btnAll.selected = NO;
-        [DDBLE swithStandbyOrWorking:GetUserDefault(DefaultUUIDString) isStandby:YES];
+        [DDBLE swithStandbyOrWorking:YES];
     }else{
         self.btnAll.selected = YES;
-        [DDBLE swithStandbyOrWorking:GetUserDefault(DefaultUUIDString) isStandby:NO];
+        [DDBLE swithStandbyOrWorking:NO];
     }
+    [self refreshImvBtnAll];
+    
+    [DFSound vibrate];
 }
+
+
+
+//- (IBAction)sliderBrightnessTouchUpInside:(id)sender {
+//    [self sliderBrightnessChangeEnd:sender];
+//}
+//
+//- (IBAction)sliderBrightnessTouchUpOutside:(id)sender {
+//    [self sliderBrightnessChangeEnd:sender];
+//}
+//
+//- (IBAction)sliderBrightnessTouchCancel:(id)sender {
+//    [self sliderBrightnessChangeEnd:sender];
+//}
+- (IBAction)sliderBrightnessChangeEnd:(UISlider *)sender{
+    NSLog(@"拖动结束了");
+    [DDBLE setBrightness:sender.value isNow:YES];
+}
+
+
+- (IBAction)sliderSpeedChangeEnd:(UISlider *)sender{
+    NSLog(@"拖动结束了");
+    [DDBLE setSpeed:sender.value isNow:YES];
+}
+
+
 - (IBAction)sliderBrightnessChange:(UISlider *)sender {
-    [DDBLE setBrightness:GetUserDefault(DefaultUUIDString) brightness:sender.value];
+    [DDBLE setBrightness:sender.value isNow:NO];
 }
 - (IBAction)sliderSpeedChange:(UISlider *)sender {
-    [DDBLE setSpeed:GetUserDefault(DefaultUUIDString) speed:sender.value];
+    [DDBLE setSpeed:sender.value isNow:NO];
 }
 - (IBAction)btnStaticClick:(UIButton *)sender {
-    if ([DDBLE.arrValue[0] intValue] == 1) {
-        [DDBLE swithDynamicOrStatic:GetUserDefault(DefaultUUIDString) isDynamic:NO];
+    if ([DDBLE.arrValue[0] intValue] == 1 && DDBLE.isLink) {
+        [DDBLE swithDynamicOrStatic:NO];
+        [DFSound vibrate];
     }
 }
 - (IBAction)btnDynamicClick:(UIButton *)sender {
-    if ([DDBLE.arrValue[0] intValue] == 0) {
-        [DDBLE swithDynamicOrStatic:GetUserDefault(DefaultUUIDString) isDynamic:YES];
+    if ([DDBLE.arrValue[0] intValue] == 0 && DDBLE.isLink) {
+        [DDBLE swithDynamicOrStatic:YES];
+        [DFSound vibrate];
     }
 }
 
@@ -337,6 +372,7 @@
             self.btnAll.selected = NO;
         }
         
+        [self refreshImvBtnAll];
         self.sliderSpeed.value = speed;
     }
 }
@@ -378,7 +414,8 @@
     DDWeakVV
     NextWaitInMain(
                    DDStrongVV
-                   self.btnAll.enabled = YES;);
+                   self.btnAll.enabled = YES;
+                   [self refreshLblConnectedName];);
 }
 
 -(void)CallBack_DisconnetedPerpheral:(NSString *)uuidString
@@ -387,8 +424,8 @@
     DDWeakVV
     NextWaitInMain(
                    DDStrongVV
-                   //self.btnAll.enabled = NO;
-                   [self setAllControlEnable];);
+                   [self setAllControlEnable];
+                   [self refreshLblConnectedName];);
 }
 
 /*
@@ -401,4 +438,6 @@
 }
 */
 
+- (IBAction)slia:(UISlider *)sender {
+}
 @end

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		645AD33637412AB9F8622D59 /* libPods-ORNA.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3648FDF1FD08CC47392A7B6 /* libPods-ORNA.a */; };
 		AD05C6951DD6AE9900750214 /* NSTimer+DF_helper.m in Sources */ = {isa = PBXBuildFile; fileRef = AD05C6941DD6AE9900750214 /* NSTimer+DF_helper.m */; };
+		AD32F3501DFA3C3400C62F98 /* DFSound.m in Sources */ = {isa = PBXBuildFile; fileRef = AD32F34F1DFA3C3400C62F98 /* DFSound.m */; };
+		AD32F3531DFA762900C62F98 /* DFSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = AD32F3521DFA762900C62F98 /* DFSlider.m */; };
 		AD7CBD3A1DC992D2008DAFAF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7CBD391DC992D2008DAFAF /* main.m */; };
 		AD7CBD431DC992D2008DAFAF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD7CBD411DC992D2008DAFAF /* Main.storyboard */; };
 		AD7CBD451DC992D2008DAFAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD7CBD441DC992D2008DAFAF /* Assets.xcassets */; };
@@ -31,10 +33,6 @@
 		AD7CBDDE1DC9B82D008DAFAF /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7CBDD81DC9B82D008DAFAF /* MBProgressHUD+Add.m */; };
 		AD7CBDE51DC9BE56008DAFAF /* YRSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7CBDE41DC9BE56008DAFAF /* YRSideViewController.m */; };
 		AD7CBDE91DC9BED5008DAFAF /* CustomTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7CBDE81DC9BED5008DAFAF /* CustomTabBarController.m */; };
-		AD7CBDF31DC9BEFB008DAFAF /* LSInteractionTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7CBDEC1DC9BEFB008DAFAF /* LSInteractionTransition.m */; };
-		AD7CBDF41DC9BEFB008DAFAF /* LSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7CBDEE1DC9BEFB008DAFAF /* LSNavigationController.m */; };
-		AD7CBDF51DC9BEFB008DAFAF /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7CBDF01DC9BEFB008DAFAF /* UIColor+Extension.m */; };
-		AD7CBDF61DC9BEFB008DAFAF /* UIViewController+LSNavigationBarTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7CBDF21DC9BEFB008DAFAF /* UIViewController+LSNavigationBarTransition.m */; };
 		AD7CBE101DC9D32E008DAFAF /* tvcLeft.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7CBE0E1DC9D32E008DAFAF /* tvcLeft.m */; };
 		AD7CBE111DC9D32E008DAFAF /* tvcLeft.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD7CBE0F1DC9D32E008DAFAF /* tvcLeft.xib */; };
 		AD7CBE131DC9D7AC008DAFAF /* LeftViewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD7CBE121DC9D7AC008DAFAF /* LeftViewcontroller.xib */; };
@@ -42,6 +40,12 @@
 		AD7CBE211DC9E299008DAFAF /* colorpicker_pie.png in Resources */ = {isa = PBXBuildFile; fileRef = AD7CBE1E1DC9E299008DAFAF /* colorpicker_pie.png */; };
 		AD7CBE221DC9E299008DAFAF /* ColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7CBE201DC9E299008DAFAF /* ColorPickerView.m */; };
 		AD7CBE241DC9E469008DAFAF /* color_picker.png in Resources */ = {isa = PBXBuildFile; fileRef = AD7CBE231DC9E469008DAFAF /* color_picker.png */; };
+		AD803D5C1DFC245100E9E784 /* DFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD803D5B1DFC245100E9E784 /* DFNavigationController.m */; };
+		AD803D681DFC25B500E9E784 /* LSInteractionTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = AD803D5F1DFC25B500E9E784 /* LSInteractionTransition.m */; };
+		AD803D691DFC25B500E9E784 /* LSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD803D611DFC25B500E9E784 /* LSNavigationController.m */; };
+		AD803D6A1DFC25B500E9E784 /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = AD803D631DFC25B500E9E784 /* UIColor+Extension.m */; };
+		AD803D6B1DFC25B500E9E784 /* UINavigationBar+DFBackgroundImage.m in Sources */ = {isa = PBXBuildFile; fileRef = AD803D651DFC25B500E9E784 /* UINavigationBar+DFBackgroundImage.m */; };
+		AD803D6C1DFC25B500E9E784 /* UIViewController+LSNavigationBarTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = AD803D671DFC25B500E9E784 /* UIViewController+LSNavigationBarTransition.m */; };
 		ADA677231DD41304005B9EE0 /* CircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA677221DD41304005B9EE0 /* CircleView.m */; };
 		ADBD869A1DD96DBD000002CF /* DescriptionController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBD86991DD96DBD000002CF /* DescriptionController.m */; };
 		ADBD869D1DD9AF9A000002CF /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBD869C1DD9AF9A000002CF /* MBProgressHUD.m */; };
@@ -55,6 +59,10 @@
 		A3648FDF1FD08CC47392A7B6 /* libPods-ORNA.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ORNA.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD05C6931DD6AE9900750214 /* NSTimer+DF_helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+DF_helper.h"; sourceTree = "<group>"; };
 		AD05C6941DD6AE9900750214 /* NSTimer+DF_helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+DF_helper.m"; sourceTree = "<group>"; };
+		AD32F34E1DFA3C3400C62F98 /* DFSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSound.h; sourceTree = "<group>"; };
+		AD32F34F1DFA3C3400C62F98 /* DFSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSound.m; sourceTree = "<group>"; };
+		AD32F3511DFA762900C62F98 /* DFSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSlider.h; sourceTree = "<group>"; };
+		AD32F3521DFA762900C62F98 /* DFSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSlider.m; sourceTree = "<group>"; };
 		AD7CBD351DC992D2008DAFAF /* ORNA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ORNA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD7CBD391DC992D2008DAFAF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AD7CBD421DC992D2008DAFAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -141,14 +149,6 @@
 		AD7CBDE41DC9BE56008DAFAF /* YRSideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRSideViewController.m; sourceTree = "<group>"; };
 		AD7CBDE71DC9BED5008DAFAF /* CustomTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTabBarController.h; sourceTree = "<group>"; };
 		AD7CBDE81DC9BED5008DAFAF /* CustomTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTabBarController.m; sourceTree = "<group>"; };
-		AD7CBDEB1DC9BEFB008DAFAF /* LSInteractionTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSInteractionTransition.h; sourceTree = "<group>"; };
-		AD7CBDEC1DC9BEFB008DAFAF /* LSInteractionTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSInteractionTransition.m; sourceTree = "<group>"; };
-		AD7CBDED1DC9BEFB008DAFAF /* LSNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSNavigationController.h; sourceTree = "<group>"; };
-		AD7CBDEE1DC9BEFB008DAFAF /* LSNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSNavigationController.m; sourceTree = "<group>"; };
-		AD7CBDEF1DC9BEFB008DAFAF /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
-		AD7CBDF01DC9BEFB008DAFAF /* UIColor+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extension.m"; sourceTree = "<group>"; };
-		AD7CBDF11DC9BEFB008DAFAF /* UIViewController+LSNavigationBarTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LSNavigationBarTransition.h"; sourceTree = "<group>"; };
-		AD7CBDF21DC9BEFB008DAFAF /* UIViewController+LSNavigationBarTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LSNavigationBarTransition.m"; sourceTree = "<group>"; };
 		AD7CBE0D1DC9D32E008DAFAF /* tvcLeft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tvcLeft.h; sourceTree = "<group>"; };
 		AD7CBE0E1DC9D32E008DAFAF /* tvcLeft.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tvcLeft.m; sourceTree = "<group>"; };
 		AD7CBE0F1DC9D32E008DAFAF /* tvcLeft.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = tvcLeft.xib; sourceTree = "<group>"; };
@@ -159,6 +159,18 @@
 		AD7CBE1F1DC9E299008DAFAF /* ColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPickerView.h; sourceTree = "<group>"; };
 		AD7CBE201DC9E299008DAFAF /* ColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPickerView.m; sourceTree = "<group>"; };
 		AD7CBE231DC9E469008DAFAF /* color_picker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_picker.png; sourceTree = "<group>"; };
+		AD803D5A1DFC245100E9E784 /* DFNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFNavigationController.h; sourceTree = "<group>"; };
+		AD803D5B1DFC245100E9E784 /* DFNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFNavigationController.m; sourceTree = "<group>"; };
+		AD803D5E1DFC25B500E9E784 /* LSInteractionTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSInteractionTransition.h; sourceTree = "<group>"; };
+		AD803D5F1DFC25B500E9E784 /* LSInteractionTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSInteractionTransition.m; sourceTree = "<group>"; };
+		AD803D601DFC25B500E9E784 /* LSNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSNavigationController.h; sourceTree = "<group>"; };
+		AD803D611DFC25B500E9E784 /* LSNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSNavigationController.m; sourceTree = "<group>"; };
+		AD803D621DFC25B500E9E784 /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
+		AD803D631DFC25B500E9E784 /* UIColor+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extension.m"; sourceTree = "<group>"; };
+		AD803D641DFC25B500E9E784 /* UINavigationBar+DFBackgroundImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+DFBackgroundImage.h"; sourceTree = "<group>"; };
+		AD803D651DFC25B500E9E784 /* UINavigationBar+DFBackgroundImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+DFBackgroundImage.m"; sourceTree = "<group>"; };
+		AD803D661DFC25B500E9E784 /* UIViewController+LSNavigationBarTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LSNavigationBarTransition.h"; sourceTree = "<group>"; };
+		AD803D671DFC25B500E9E784 /* UIViewController+LSNavigationBarTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LSNavigationBarTransition.m"; sourceTree = "<group>"; };
 		ADA677211DD41304005B9EE0 /* CircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleView.h; sourceTree = "<group>"; };
 		ADA677221DD41304005B9EE0 /* CircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleView.m; sourceTree = "<group>"; };
 		ADBD86981DD96DBD000002CF /* DescriptionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptionController.h; sourceTree = "<group>"; };
@@ -309,6 +321,12 @@
 				AD7CBD7A1DC99BDE008DAFAF /* DFD.m */,
 				AD7CBD7B1DC99BDE008DAFAF /* Foundation+Log.h */,
 				AD7CBD7C1DC99BDE008DAFAF /* Foundation+Log.m */,
+				AD32F34E1DFA3C3400C62F98 /* DFSound.h */,
+				AD32F34F1DFA3C3400C62F98 /* DFSound.m */,
+				AD32F3511DFA762900C62F98 /* DFSlider.h */,
+				AD32F3521DFA762900C62F98 /* DFSlider.m */,
+				AD803D5A1DFC245100E9E784 /* DFNavigationController.h */,
+				AD803D5B1DFC245100E9E784 /* DFNavigationController.m */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -406,8 +424,8 @@
 		AD7CBDD41DC9B7FF008DAFAF /* Untils */ = {
 			isa = PBXGroup;
 			children = (
+				AD803D5D1DFC25B500E9E784 /* LSNavigationBarTransition */,
 				ADA677201DD41304005B9EE0 /* CircleView */,
-				AD7CBDEA1DC9BEFB008DAFAF /* LSNavigationBarTransition */,
 				AD7CBDE61DC9BECF008DAFAF /* CustomTabBarController */,
 				AD7CBDE21DC9BE56008DAFAF /* YRSideVc */,
 				AD7CBDD51DC9B82D008DAFAF /* MBProgressHUD */,
@@ -444,21 +462,6 @@
 			path = CustomTabBarController;
 			sourceTree = "<group>";
 		};
-		AD7CBDEA1DC9BEFB008DAFAF /* LSNavigationBarTransition */ = {
-			isa = PBXGroup;
-			children = (
-				AD7CBDEB1DC9BEFB008DAFAF /* LSInteractionTransition.h */,
-				AD7CBDEC1DC9BEFB008DAFAF /* LSInteractionTransition.m */,
-				AD7CBDED1DC9BEFB008DAFAF /* LSNavigationController.h */,
-				AD7CBDEE1DC9BEFB008DAFAF /* LSNavigationController.m */,
-				AD7CBDEF1DC9BEFB008DAFAF /* UIColor+Extension.h */,
-				AD7CBDF01DC9BEFB008DAFAF /* UIColor+Extension.m */,
-				AD7CBDF11DC9BEFB008DAFAF /* UIViewController+LSNavigationBarTransition.h */,
-				AD7CBDF21DC9BEFB008DAFAF /* UIViewController+LSNavigationBarTransition.m */,
-			);
-			path = LSNavigationBarTransition;
-			sourceTree = "<group>";
-		};
 		AD7CBE1D1DC9E299008DAFAF /* ColorPickerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -469,6 +472,23 @@
 			);
 			name = ColorPickerView;
 			path = Untils/ColorPickerView;
+			sourceTree = "<group>";
+		};
+		AD803D5D1DFC25B500E9E784 /* LSNavigationBarTransition */ = {
+			isa = PBXGroup;
+			children = (
+				AD803D5E1DFC25B500E9E784 /* LSInteractionTransition.h */,
+				AD803D5F1DFC25B500E9E784 /* LSInteractionTransition.m */,
+				AD803D601DFC25B500E9E784 /* LSNavigationController.h */,
+				AD803D611DFC25B500E9E784 /* LSNavigationController.m */,
+				AD803D621DFC25B500E9E784 /* UIColor+Extension.h */,
+				AD803D631DFC25B500E9E784 /* UIColor+Extension.m */,
+				AD803D641DFC25B500E9E784 /* UINavigationBar+DFBackgroundImage.h */,
+				AD803D651DFC25B500E9E784 /* UINavigationBar+DFBackgroundImage.m */,
+				AD803D661DFC25B500E9E784 /* UIViewController+LSNavigationBarTransition.h */,
+				AD803D671DFC25B500E9E784 /* UIViewController+LSNavigationBarTransition.m */,
+			);
+			path = LSNavigationBarTransition;
 			sourceTree = "<group>";
 		};
 		ADA677201DD41304005B9EE0 /* CircleView */ = {
@@ -624,34 +644,38 @@
 			files = (
 				AD7CBDCC1DC99CF6008DAFAF /* NSDate+toString.m in Sources */,
 				AD7CBE161DC9DA30008DAFAF /* AbountUsController.m in Sources */,
+				AD32F3531DFA762900C62F98 /* DFSlider.m in Sources */,
+				AD803D6B1DFC25B500E9E784 /* UINavigationBar+DFBackgroundImage.m in Sources */,
+				AD803D6C1DFC25B500E9E784 /* UIViewController+LSNavigationBarTransition.m in Sources */,
 				AD7CBD811DC99BDE008DAFAF /* DFD.m in Sources */,
+				AD803D6A1DFC25B500E9E784 /* UIColor+Extension.m in Sources */,
 				ADF65E201DD1F498008A8F38 /* SearchController.m in Sources */,
 				ADBD869A1DD96DBD000002CF /* DescriptionController.m in Sources */,
+				AD803D691DFC25B500E9E784 /* LSNavigationController.m in Sources */,
 				AD7CBDE51DC9BE56008DAFAF /* YRSideViewController.m in Sources */,
-				AD7CBDF61DC9BEFB008DAFAF /* UIViewController+LSNavigationBarTransition.m in Sources */,
 				AD7CBDE91DC9BED5008DAFAF /* CustomTabBarController.m in Sources */,
 				AD7CBD821DC99BDE008DAFAF /* Foundation+Log.m in Sources */,
 				AD05C6951DD6AE9900750214 /* NSTimer+DF_helper.m in Sources */,
+				AD803D681DFC25B500E9E784 /* LSInteractionTransition.m in Sources */,
 				AD7CBD6B1DC9999F008DAFAF /* IndexController.m in Sources */,
 				AD7CBDC81DC99CF6008DAFAF /* BLEManager+Helper.m in Sources */,
 				AD7CBD5E1DC99461008DAFAF /* AppDelegate.m in Sources */,
+				AD803D5C1DFC245100E9E784 /* DFNavigationController.m in Sources */,
 				AD7CBDDE1DC9B82D008DAFAF /* MBProgressHUD+Add.m in Sources */,
 				AD7CBD6F1DC99A5A008DAFAF /* LeftViewcontroller.m in Sources */,
 				AD7CBDC91DC99CF6008DAFAF /* BLEManager.m in Sources */,
-				AD7CBDF41DC9BEFB008DAFAF /* LSNavigationController.m in Sources */,
 				ADBD86A01DD9BB3E000002CF /* UserManualController.m in Sources */,
 				AD7CBDCF1DC99CF6008DAFAF /* NSTimer+DFHelper.m in Sources */,
 				AD7CBE221DC9E299008DAFAF /* ColorPickerView.m in Sources */,
 				AD7CBDCB1DC99CF6008DAFAF /* NSData+ToString.m in Sources */,
-				AD7CBDF51DC9BEFB008DAFAF /* UIColor+Extension.m in Sources */,
 				ADBD869D1DD9AF9A000002CF /* MBProgressHUD.m in Sources */,
+				AD32F3501DFA3C3400C62F98 /* DFSound.m in Sources */,
 				AD7CBDD11DC99CF6008DAFAF /* UIImage+LogN.m in Sources */,
 				AD7CBDCD1DC99CF6008DAFAF /* NSObject+XWAdd.m in Sources */,
 				AD7CBD5F1DC99461008DAFAF /* BaseController.m in Sources */,
 				AD7CBE101DC9D32E008DAFAF /* tvcLeft.m in Sources */,
 				ADA677231DD41304005B9EE0 /* CircleView.m in Sources */,
 				AD7CBDCE1DC99CF6008DAFAF /* NSThread+DFHelper.m in Sources */,
-				AD7CBDF31DC9BEFB008DAFAF /* LSInteractionTransition.m in Sources */,
 				AD7CBD3A1DC992D2008DAFAF /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
